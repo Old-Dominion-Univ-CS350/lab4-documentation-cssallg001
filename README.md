@@ -1,4 +1,4 @@
-* [Reports]()
+* [Reports](https://old-dominion-univ-cs350.github.io/lab4-documentation-cssallg001/)
 
 # WordCounter
 
