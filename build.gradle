@@ -61,16 +61,18 @@ task gstatus () {
 task deployReports (dependsOn: [reports])
 {
 	gitPublishCopy.dependsOn 'https://old-dominion-univ-cs350.github.io/lab4-documentation-cssallg001/'
-	gitPublish {
-	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
-	branch = 'gh-pages'
-	contents
+	gitPublish 
 	{
-		from 'build/reports'
+		repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
+		branch = 'gh-pages'
+		contents
+		{
+			from 'build/reports'
+			into '.'
+		}
+		doLast
+		{
+			println "Task:'deployReports' has completed"
+		}
 	}
-	doLast
-	{
-		println "Task:'deployReports' has completed"
-	}
-}
 }
