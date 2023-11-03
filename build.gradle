@@ -56,7 +56,7 @@ task gstatus (dependsOn: 'deployReports') {
 }
 
 gitPublishCopy.dependsOn 'deployReports'
-gitPublish
+gitPublish 
 {
 	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
 	branch = 'gh-pages'
