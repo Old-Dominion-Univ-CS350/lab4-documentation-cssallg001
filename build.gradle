@@ -21,7 +21,7 @@ dependencies {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-    ignoreFailures = true
+    ignoreFailures = false
     testLogging {
         events "passed", "skipped", "failed"
         }
