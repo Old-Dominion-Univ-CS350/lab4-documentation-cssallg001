@@ -59,7 +59,7 @@ gitPublishCopy.dependsOn 'javadoc'
 gitPublishReset.dependsOn 'javadoc'
 gitPublish
 {
-
+	
 	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
 	branch = 'gh-pages'
 	contents
