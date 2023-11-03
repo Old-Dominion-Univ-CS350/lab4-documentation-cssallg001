@@ -35,7 +35,7 @@ task reports (dependsOn: ['build', 'javadoc'], type:Copy)
 {
 	println "build and javadoc has completed"
 	println "Task: 'reports' is starting"
-	from(file('scr/main/html'))
+	from(file('src/main/html'))
 	into(file('build/reports'))
 
 	from(file('build/docs'))
@@ -63,16 +63,20 @@ gitPublish
 	contents
 	{
 		from 'build/reports/'
-		into 'build/reports/'
 	}
+
+	commitMessage = "Publishing a new page"
 
 }
 
 task deployReports (dependsOn: ['reports'])
 {
-	println "Task: 'deployReports' is starting"
+	doFirst {
+		println "Task: 'deployReports' is starting"
+	}
+
 	doLast
 	{
-		println "Task:'deployReports' has completed"
+		println "Task: 'deployReports' has completed"
 	}
 }
