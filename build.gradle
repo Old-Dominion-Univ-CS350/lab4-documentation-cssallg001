@@ -46,13 +46,22 @@ task reports (dependsOn: [build, javadoc], type:Copy)
 }
 
                            
-
+task gstatus () {
+    doLast {
+        println "Check out repository status"
+        exec {
+            workingDir = '.'
+            commandLine = ['git', 'status']
+        }
+    }
+}
 
 
 
 task deployReports (dependsOn: [reports])
 {
 	gitPublish {
+	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
 	branch = 'gh-pages'
 	contents
 	{
