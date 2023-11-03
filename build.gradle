@@ -64,6 +64,7 @@ gitPublish
 	contents
 	{
 		from './build/reports'
+		into '.'
 	}
 
 }
