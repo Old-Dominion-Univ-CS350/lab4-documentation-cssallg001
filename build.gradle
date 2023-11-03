@@ -33,16 +33,15 @@ application { //Allows  ./gradlew run --args=path-to-test-data
 
 task reports (dependsOn: ['build', 'javadoc'], type:Copy)
 {
-	println "build and javadoc has been completed"
+	println "build and javadoc has completed"
+	println "Task: 'reports' is starting"
 	from(file('scr/main/html'))
 	into(file('build/reports'))
 
 	from(file('build/docs'))
 	into(file('build/reports'))
-	doLast
-	{
-		println "Task: 'reports' has completed"
-	}
+
+	println "Task: 'reports' has completed"
 }
 
                            
@@ -63,13 +62,13 @@ gitPublish
 	branch = 'gh-pages'
 	contents
 	{
-		from './build/reports'
-		into '.'
+		from 'build/reports/'
+		into 'build/reports/'
 	}
 
 }
 
-task deployReports (dependsOn: ['build', 'javadoc', 'reports'])
+task deployReports (dependsOn: ['reports'])
 {
 	println "Task: 'deployReports' is starting"
 	doLast
