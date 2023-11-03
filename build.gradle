@@ -55,10 +55,11 @@ task gstatus (dependsOn: 'deployReports') {
     }
 }
 
-// gitPublishCopy.dependsOn 'deployReports'
+gitPublishCopy.dependsOn 'javadoc'
 gitPublishReset.dependsOn 'javadoc'
 gitPublish
 {
+
 	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
 	branch = 'gh-pages'
 	contents
@@ -66,7 +67,7 @@ gitPublish
 		from 'build/reports/'
 	}
 
-	commitMessage = "Publishing a new page"
+	commitMessage = "IT FINALLY WORKED!!!!"
 
 }
 
