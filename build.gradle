@@ -31,24 +31,14 @@ application { //Allows  ./gradlew run --args=path-to-test-data
     mainClass = 'edu.odu.cs.MostCommonWords'
 }
 
-task reports (type:Copy)
+task reports (dependsOn: [build, javadoc], type:Copy)
 {
-	dependsOn build, javadoc
 	println "build and javadoc has been completed"
-	doLast
-	{
-		copy 
-		{
-			from 'scr/main/html'
-			into 'build/reports'
-		}
-		
-		copy 
-		{
-			from 'build/docs'
-			into 'build/reports'
-		}
-	}	
+		from(file('scr/main/html'))
+		into(file('build/reports'))
+	
+		from(file('build/docs'))
+		into(file('build/reports'))
 }
 
                            
@@ -62,13 +52,9 @@ gitPublish {
 
 
 
-task deployReports ()
+task deployReports (dependsOn: [reports, gitPublish])
 {
-	dependsOn reports
-	doLast
-	{
-		println "Task: 'reports' complete"
-		println "Task: deployReports Complete"
-	}
+	println "Task: 'reports' complete"
+	println "Task: deployReports Complete"
 }
 
