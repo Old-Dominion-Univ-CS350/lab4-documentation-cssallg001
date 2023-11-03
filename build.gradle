@@ -58,7 +58,7 @@ task gstatus () {
 
 
 
-task deployReports (dependsOn: [reports])
+task deployReports (dependsOn: [reports, gstatus])
 {
 	gitPublish {
 	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
