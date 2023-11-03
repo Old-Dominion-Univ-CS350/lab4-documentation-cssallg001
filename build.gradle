@@ -69,8 +69,9 @@ gitPublish
 
 }
 
-task deployReports (dependsOn: ['reports'])
+task deployReports (dependsOn: ['build', 'javadoc', 'reports'])
 {
+	println "Task: 'deployReports' is starting"
 	doLast
 	{
 		println "Task:'deployReports' has completed"
