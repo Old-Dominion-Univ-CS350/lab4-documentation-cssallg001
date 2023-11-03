@@ -55,8 +55,9 @@ task gstatus (dependsOn: 'deployReports') {
     }
 }
 
-gitPublishCopy.dependsOn 'deployReports'
-gitPublish 
+// gitPublishCopy.dependsOn 'deployReports'
+gitPublishReset.dependsOn 'javadoc'
+gitPublish
 {
 	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
 	branch = 'gh-pages'
@@ -69,7 +70,8 @@ gitPublish
 
 }
 
-task deployReports (dependsOn: ['reports', 'gitPublish'])
+
+task deployReports (dependsOn: ['reports'])
 {
 	doFirst {
 		println "Task: 'deployReports' is starting"
