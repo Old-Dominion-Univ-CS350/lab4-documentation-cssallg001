@@ -58,7 +58,18 @@ task gstatus () {
 
 
 
-task deployReports (dependsOn: [reports, javadoc])
+
+
+
+
+
+
+
+
+
+
+
+task deployReports (dependsOn: [reports])
 {
 	gitPublishCopy.dependsOn deployReports
 	gitPublish 
@@ -68,7 +79,6 @@ task deployReports (dependsOn: [reports, javadoc])
 		contents
 		{
 			from 'build/reports'
-			into '.'
 		}
 		doLast
 		{
