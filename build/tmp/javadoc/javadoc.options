@@ -1,0 +1,10 @@
+-classpath '/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/build/classes/java/main:/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/build/resources/main'
+-d '/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/build/docs/javadoc'
+-doctitle 'lab4-documentation-cssallg001 API'
+-notimestamp 
+-quiet 
+-windowtitle 'lab4-documentation-cssallg001 API'
+'/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/src/main/java/edu/odu/cs/MostCommonWords.java'
+'/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/src/main/java/edu/odu/cs/WordCount.java'
+'/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/src/main/java/edu/odu/cs/WordCounter.java'
+'/home/cs_sallg001/4_Fall_2023/CS_350/Labs/lab4-documentation-cssallg001/src/main/java/edu/odu/cs/WordFilter.java'
