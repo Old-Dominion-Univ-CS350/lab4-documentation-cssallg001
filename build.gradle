@@ -34,11 +34,11 @@ application { //Allows  ./gradlew run --args=path-to-test-data
 task reports (dependsOn: [build, javadoc], type:Copy)
 {
 	println "build and javadoc has been completed"
-		from(file('scr/main/html'))
-		into(file('build/reports'))
-	
-		from(file('build/docs'))
-		into(file('build/reports'))
+	from(file('scr/main/html'))
+	into(file('build/reports'))
+
+	from(file('build/docs'))
+	into(file('build/reports'))
 }
 
                            
