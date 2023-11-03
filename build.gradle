@@ -69,7 +69,7 @@ gitPublish
 
 }
 
-task deployReports (dependsOn: ['reports'])
+task deployReports (dependsOn: ['reports', 'gitPublish'])
 {
 	doFirst {
 		println "Task: 'deployReports' is starting"
