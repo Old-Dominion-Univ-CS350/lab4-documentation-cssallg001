@@ -60,7 +60,7 @@ task gstatus () {
 
 task deployReports (dependsOn: [reports, javadoc])
 {
-	gitPublishCopy.dependsOn 'https://old-dominion-univ-cs350.github.io/lab4-documentation-cssallg001/'
+	gitPublishCopy.dependsOn deployReports
 	gitPublish 
 	{
 		repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
