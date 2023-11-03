@@ -35,7 +35,7 @@ task reports (dependsOn: ['build', 'javadoc'], type:Copy)
 {
 	println "build and javadoc has completed"
 	println "Task: 'reports' is starting"
-	from(file('scr/main/html'))
+	from(file('src/main/html'))
 	into(file('build/reports'))
 
 	from(file('build/docs'))
