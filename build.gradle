@@ -39,22 +39,28 @@ task reports (dependsOn: [build, javadoc], type:Copy)
 
 	from(file('build/docs'))
 	into(file('build/reports'))
+	doLast
+	{
+		println "Task: 'reports' has completed"
+	}
 }
 
                            
-gitPublish {
+
+
+
+
+task deployReports (dependsOn: [reports])
+{
+	gitPublish {
 	branch = 'gh-pages'
 	contents
 	{
 		from 'build/reports'
 	}
+	doLast
+	{
+		println "Task:'deployReports' has completed"
+	}
 }
-
-
-
-task deployReports (dependsOn: [reports, gitPublish])
-{
-	println "Task: 'reports' complete"
-	println "Task: deployReports Complete"
 }
-
