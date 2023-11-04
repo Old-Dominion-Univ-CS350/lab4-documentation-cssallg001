@@ -67,7 +67,8 @@ task gstatus (dependsOn: 'deployReports') {
     }
 }
 
-
+gitPublishCopy.dependsOn site
+gitPublishReset.dependsOn site
 gitPublish
 {
 	

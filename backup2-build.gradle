@@ -1,0 +1,161 @@
+buildscript {      
+    repositories 
+	{
+        mavenCentral()
+        maven 
+		{
+            url "https://plugins.gradle.org/m2/"
+        }
+
+		dependencies 
+		{
+			classpath "com.github.fracpete:rsync4j-all:3.1.2-15"
+		}
+	}
+}
+
+plugins {
+   id 'java'
+   id 'application'
+   id 'org.ajoberstar.git-publish' version '4.2.0'
+}
+
+import com.github.fracpete.rsync4j.RSync;
+import com.github.fracpete.processoutput4j.output.ConsoleOutputProcessOutput;
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    ignoreFailures = true
+    testLogging {
+        events "passed", "skipped", "failed"
+        }
+}
+
+
+task deployWebsite (dependsOn: "buildSite") {
+    doLast {
+        def sourceDir = "build/reports/";
+        def userName = System.properties['cs_sallg001']  
+        def serverName = "linux.cs.odu.edu"
+        def destinationDir = "secure_html/gitlab/cCCdemo/"
+        def destURL = "${userName}@${serverName}:${destinationDir}"; 
+        RSync rsync = new RSync()
+                .source(sourceDir)
+                .destination(destURL)
+                .recursive(true)
+                .archive(true)
+                .delete(true)
+                .verbose(true)
+                .rsh("ssh");  
+        ConsoleOutputProcessOutput output
+                = new ConsoleOutputProcessOutput();
+        output.monitor(rsync.builder());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+task reports (dependsOn: ['build', 'javadoc'], type:Copy)
+{
+	println "build and javadoc has completed"
+	println "Task: 'reports' is starting"
+	from(file('src/main/html'))
+	into(file('build/reports'))
+
+	from(file('build/docs'))
+	into(file('build/reports'))
+
+	println "Task: 'reports' has completed"
+}
+
+task deployReports (dependsOn: ['reports'])
+{
+	doFirst {
+		println "Task: 'deployReports' is starting"
+	}
+
+	doLast
+	{
+		println "Task: 'deployReports' has completed"
+	}
+}
+
+
+task gstatus (dependsOn: 'deployReports') {
+    doLast {
+		println "Check out repository status"
+		exec {
+			workingDir = '.'
+			commandLine = ['git', 'status']
+		}
+    }
+}
+
+gitPublishCopy.dependsOn 'javadoc'
+gitPublishReset.dependsOn 'javadoc'
+gitPublish
+{
+	
+	repoUri = 'git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'
+	branch = 'gh-pages'
+	contents
+	{
+		from 'build/reports/'
+	}
+
+	commitMessage = "IT FINALLY WORKED!!!!"
+
+}
+
+def websiteRepo='git@github.com:Old-Dominion-Univ-CS350/lab4-documentation-cssallg001.git'   
+
+task clearPages(type: Delete) {
+    delete 'build/gh-pages'
+}
+
+task clonePages(dependsOn: ['clearPages']) {               
+    doLast {
+        exec {
+            workingDir = '.'
+            commandLine = ['git', 'clone', websiteRepo, 'build/gh-pages']
+        }
+    }
+}
+
+
+task copyWebsite (dependsOn: ['reports', 'clonePages']) {  
+    doLast {
+        ant.copy (todir: 'build/gh-pages') {
+            fileset(dir: 'build/jbake')
+        }
+    }
+}
+
+
+
+task updateGHPages (dependsOn: 'copyWebsite') {
+    group = "Reporting"
+    description  'Copies reports to the website repo and pushes to GitHub'
+    doLast {
+        def pagesDir = "$buildDir/gh-pages"
+        exec {
+            workingDir = 'build/gh-pages'                               
+            commandLine = ['git', 'add', '.']
+        }
+        exec {
+            workingDir = 'build/gh-pages'
+            commandLine = ['git', 'commit', '-m', 'Updating-webpages']  
+        }
+        exec {
+            workingDir = 'build/gh-pages'
+            commandLine = ['git', 'push']
+        }
+    }
+}
