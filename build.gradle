@@ -44,18 +44,6 @@ task reports (dependsOn: ['build', 'javadoc'], type:Copy)
 	println "Task: 'reports' has completed"
 }
 
-task deployReports (dependsOn: ['reports'])
-{
-	doFirst {
-		println "Task: 'deployReports' is starting"
-	}
-
-	doLast
-	{
-		println "Task: 'deployReports' has completed"
-	}
-}
-
                            
 task gstatus (dependsOn: 'deployReports') {
     doLast {
@@ -67,7 +55,8 @@ task gstatus (dependsOn: 'deployReports') {
     }
 }
 
-
+gitPublishCopy.dependsOn 'javadoc'
+gitPublishReset.dependsOn 'javadoc'
 gitPublish
 {
 	
@@ -83,3 +72,14 @@ gitPublish
 }
 
 
+task deployReports (dependsOn: ['reports', 'gitPublishPush'])
+{
+	doFirst {
+		println "Task: 'deployReports' is starting"
+	}
+
+	doLast
+	{
+		println "Task: 'deployReports' has completed"
+	}
+}
