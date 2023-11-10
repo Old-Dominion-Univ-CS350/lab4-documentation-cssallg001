@@ -39,3 +39,4 @@ jobs:
         git config --global user.email "sallg001@odu.edu"      
         git config --global user.name "Sean Allgaier"
         ./gradlew deploySite                               
+        
