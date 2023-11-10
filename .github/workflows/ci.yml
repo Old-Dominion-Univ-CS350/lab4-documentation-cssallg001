@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest         
 
     steps:    
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.2.5  
-      with:
-        branch: gh-pages                                 
-        folder: build/reports                            
     - name: Deploy reports using an SSH agent
       run: |
         eval $(ssh-agent -s -t 600)                           
@@ -42,3 +37,8 @@ jobs:
         git config --global user.email "sallg001@email.address"      
         git config --global user.name "Sean Allgaier"
         ./gradlew deployWebsite                               
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4.2.5  
+      with:
+        branch: gh-pages                                 
+        folder: build/reports                            
