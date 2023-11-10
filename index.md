@@ -1,6 +1,6 @@
 # Project Reports
 
-Your Name
+Sean Allgaier
 
 * [Tests](./tests/test/)
 * [JavaDoc](./javadoc/)
