@@ -10,13 +10,6 @@ jobs:
     runs-on: ubuntu-latest         
 
     steps:    
-    - name: Deploy reports using an SSH agent
-      run: |
-        eval $(ssh-agent -s -t 600)                           
-        ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")      
-        git config --global user.email "sallg001@odu.edu"      
-        git config --global user.name "Sean Allgaier"
-        ./gradlew deployWebsite                               
     - uses: actions/checkout@v2                   
       with:
         fetch-depth: 0
@@ -30,15 +23,15 @@ jobs:
     - name: Build and test
       working-directory: ./
       run: ./gradlew build
-    - name: Deploy reports using an SSH agent
-      run: |
-        eval $(ssh-agent -s -t 600)                           
-        ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")      
-        git config --global user.email "sallg001@email.address"      
-        git config --global user.name "cssallg001"
-        ./gradlew deployWebsite                               
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.2.5  
       with:
         branch: gh-pages                                 
         folder: build/reports                            
+    - name: Deploy reports using an SSH agent
+      run: |
+        eval $(ssh-agent -s -t 600)                           
+        ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")      
+        git config --global user.email "sallg001@odu.edu"      
+        git config --global user.name "Sean Allgaier"
+        ./gradlew deployWebsite                               
