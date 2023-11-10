@@ -39,5 +39,3 @@ jobs:
         git config --global user.email "sallg001@odu.edu"      
         git config --global user.name "Project Actions"
         ./gradlew deploySite                               
-        
-        
