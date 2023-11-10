@@ -21,10 +21,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew              
     - name: Build and test
-      working-directory: ./build
+      working-directory: 
       run ../gradlew build
     - name: Deploy
             uses: JamesIves/github-pages-deploy-action@v4.2.5
             with:
                 branch: gh-pages
                 folder: build/reports
+    
