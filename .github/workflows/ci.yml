@@ -40,3 +40,4 @@ jobs:
         git config --global user.name "Project Actions"
         ./gradlew reports
         ./gradlew deploySite                               
+        ./gradlew gitPublish
