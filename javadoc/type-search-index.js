@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"edu.odu.cs","l":"MostCommonWords"},{"p":"edu.odu.cs","l":"WordCount"},{"p":"edu.odu.cs","l":"WordCounter"},{"p":"edu.odu.cs","l":"WordFilter"}]
