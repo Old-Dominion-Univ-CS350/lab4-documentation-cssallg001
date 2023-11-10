@@ -23,11 +23,6 @@ jobs:
     - name: Build and test
       working-directory: ./
       run: ./gradlew build
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.2.5  
-      with:
-        branch: gh-pages                                 
-        folder: build/reports                            
     - name: Deploy reports using an SSH agent
       run: |
         eval $(ssh-agent -s -t 600)                           
@@ -35,3 +30,8 @@ jobs:
         git config --global user.email "sallg001@odu.edu"      
         git config --global user.name "Project Actions"
         ./gradlew deployWebsite                               
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4.2.5  
+      with:
+        branch: gh-pages                                 
+        folder: build/reports                            
