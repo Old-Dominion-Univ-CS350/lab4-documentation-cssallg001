@@ -34,9 +34,8 @@ jobs:
         folder: build/reports                            
     - name: Deploy reports using an SSH agent
       run: |
-        eval $(ssh-agent -s -t 4096)                           
+        eval $(ssh-agent -s -t 600)                           
         ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")      
         git config --global user.email "sallg001@odu.edu"      
-        git config --global user.name "Sean Allgaier"
+        git config --global user.name "Project Actions"
         ./gradlew deploySite                               
-        
