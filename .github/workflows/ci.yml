@@ -23,9 +23,3 @@ jobs:
     - name: Build and test
       working-directory: ./
       run ../gradlew build
-    - name: Deploy
-            uses: JamesIves/github-pages-deploy-action@v4.2.5
-            with:
-                branch: gh-pages
-                folder: build/reports
-    
