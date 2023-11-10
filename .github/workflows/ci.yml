@@ -38,7 +38,6 @@ jobs:
         ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")      
         git config --global user.email "sallg001@odu.edu"      
         git config --global user.name "Project Actions"
-        ./gradlew reports
         ./gradlew deploySite                               
         
         
